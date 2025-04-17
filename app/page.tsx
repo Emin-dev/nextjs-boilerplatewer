@@ -31,7 +31,7 @@ export default function Home() {
           <NavigationMenu className="flex flex-1">
             <NavigationMenuList className="flex flex-1 justify-start">
               <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
+                <Link href="/"  passHref>
                   <NavigationMenuLink className="font-bold flex items-center space-x-2">
                     <Image src="/file.svg" alt="Logo" width={24} height={24} />
                     <span>PremiumApp</span>
@@ -58,27 +58,18 @@ export default function Home() {
                         </a>
                       </NavigationMenuLink>
                     </li>
-                    <ListItem href="#feature1" title="Intuitive Interface">
-                      Streamlined design for maximum usability.
-                    </ListItem>
-                    <ListItem href="#feature2" title="Robust Security">
-                      Your data is protected with enterprise-grade security.
-                    </ListItem>
-                    <ListItem href="#feature3" title="Scalable Solution">
-                      Grows with your needs, from startup to enterprise.
-                    </ListItem>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/pricing" legacyBehavior passHref>
+                <Link href="/pricing"  passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     Pricing
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/about" legacyBehavior passHref>
+                <Link href="/about"  passHref>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                     About
                   </NavigationMenuLink>
@@ -248,30 +239,4 @@ export default function Home() {
   );
 }
 
-// Helper component for NavigationMenu
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  )
-})
-ListItem.displayName = "ListItem"
-
-// Need React for the helper component
-import React from 'react';
 
