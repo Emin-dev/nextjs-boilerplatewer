@@ -21,7 +21,7 @@ const SITE_DESC = 'Full-stack developer specializing in X, Y & Z.'
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://example.com'
 const EMAIL = process.env.NEXT_PUBLIC_EMAIL || 'your.email@example.com'
 const YEAR = new Date().getFullYear()
-
+ 
 interface NavLink { href: string; label: string }
 interface Project {
   title: string
