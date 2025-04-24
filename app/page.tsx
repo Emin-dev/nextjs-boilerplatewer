@@ -1,173 +1,200 @@
-import { Button } from "@/components/ui/button";
+import { NextPage } from 'next'
+import Head from 'next/head'
+import Link from 'next/link'
+import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
   CardHeader,
+  CardContent,
+  CardFooter,
   CardTitle,
-} from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import Image from "next/image";
+  CardDescription,
+} from '@/components/ui/card'
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
+import { Separator } from '@/components/ui/separator'
+import clsx from 'clsx'
 
-export default function Home() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center">
-        </div>
-      </header>
+const SITE_TITLE = 'Your Name – Developer'
+const SITE_DESC = 'Full-stack developer specializing in X, Y & Z.'
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://example.com'
+const EMAIL = process.env.NEXT_PUBLIC_EMAIL || 'your.email@example.com'
+const YEAR = new Date().getFullYear()
 
-      {/* Main Content */}
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="container grid lg:grid-cols-2 gap-10 items-center py-16 md:py-24 lg:py-32">
-          <div className="flex flex-col items-start space-y-6">
-            <Badge variant="outline">New & Improved</Badge>
-            <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl xl:text-6xl">
-              Experience the Premium Difference
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Elevate your workflow with our cutting-edge platform, designed for performance, security, and scalability. Join thousands of satisfied customers today.
-            </p>
-            <div className="flex space-x-4">
-              <Button size="lg">Get Started Free</Button>
-              <Button size="lg" variant="outline">Request Demo</Button>
-            </div>
-          </div>
-          <div className="flex items-center justify-center">
-             {/* Placeholder for an image or illustration */}
-             <Image
-               src="/window.svg" // Example image
-               alt="Hero Illustration"
-               width={450}
-               height={450}
-               className="rounded-lg shadow-xl"
-            />
-          </div>
-        </section>
-
-        <Separator />
-
-        {/* Features Section */}
-        <section id="features" className="container py-16 md:py-24 lg:py-32">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight">Powerful Features</h2>
-            <p className="text-muted-foreground mt-2">Everything you need to succeed.</p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="flex flex-col">
-              <CardHeader>
-                 <Image src="/file.svg" alt="Feature 1 Icon" width={40} height={40} className="mb-4"/>
-                <CardTitle>Feature One</CardTitle>
-                <CardDescription>Seamless Integration</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <p>Connect effortlessly with your existing tools and workflows.</p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" size="sm">Learn More</Button>
-              </CardFooter>
-            </Card>
-            <Card className="flex flex-col">
-              <CardHeader>
-                <Image src="/globe.svg" alt="Feature 2 Icon" width={40} height={40} className="mb-4"/>
-                <CardTitle>Feature Two</CardTitle>
-                <CardDescription>Advanced Analytics</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <p>Gain deep insights into your data with our powerful analytics engine.</p>
-              </CardContent>
-               <CardFooter>
-                <Button variant="outline" size="sm">Learn More</Button>
-              </CardFooter>
-            </Card>
-            <Card className="flex flex-col">
-              <CardHeader>
-                 <Image src="/window.svg" alt="Feature 3 Icon" width={40} height={40} className="mb-4"/>
-                <CardTitle>Feature Three</CardTitle>
-                <CardDescription>24/7 Support</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <p>Our dedicated support team is always here to help you succeed.</p>
-              </CardContent>
-               <CardFooter>
-                <Button variant="outline" size="sm">Learn More</Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </section>
-
-         <Separator />
-
-        {/* Testimonial Section (Example) */}
-         <section className="bg-muted/40 py-16 md:py-24 lg:py-32">
-            <div className="container text-center">
-                 <h2 className="text-3xl font-bold tracking-tight mb-8">Trusted by Professionals</h2>
-                 <div className="grid gap-8 md:grid-cols-3">
-                    <Card>
-                        <CardHeader className="items-center">
-                             <Avatar className="mb-2">
-                                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                                <AvatarFallback>CN</AvatarFallback>
-                             </Avatar>
-                             <CardTitle className="text-lg">Sarah Jones</CardTitle>
-                             <CardDescription>CEO, TechCorp</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                             <p className="italic">"This platform transformed how we operate. Highly recommended!"</p>
-                        </CardContent>
-                    </Card>
-                     <Card>
-                        <CardHeader className="items-center">
-                             <Avatar className="mb-2">
-                                <AvatarImage src="/placeholder-avatar-2.png" alt="Placeholder" />
-                                <AvatarFallback>MJ</AvatarFallback>
-                             </Avatar>
-                             <CardTitle className="text-lg">Mike Adams</CardTitle>
-                             <CardDescription>Lead Developer, Innovate Ltd.</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                             <p className="italic">"Incredible performance and stellar support. A game-changer.""</p>
-                        </CardContent>
-                    </Card>
-                     <Card>
-                        <CardHeader className="items-center">
-                            <Avatar className="mb-2">
-                                <AvatarImage src="/placeholder-avatar-3.png" alt="Placeholder"/>
-                                <AvatarFallback>LP</AvatarFallback>
-                            </Avatar>
-                            <CardTitle className="text-lg">Lisa Ray</CardTitle>
-                            <CardDescription>Project Manager, Solutions Inc.</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                             <p className="italic">"The intuitive design made onboarding our team a breeze."</p>
-                        </CardContent>
-                    </Card>
-                 </div>
-            </div>
-         </section>
-
-      </main>
-
-      {/* Footer */}
-      <footer className="border-t">
-        <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
-          <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-             <Image src="/file.svg" alt="Logo" width={24} height={24} />
-             <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-              Built with Next.js and shadcn/ui.
-            </p>
-          </div>
-           <p className="text-center text-sm text-muted-foreground md:text-right">
-             © {new Date().getFullYear()} PremiumApp, Inc. All rights reserved.
-           </p>
-        </div>
-      </footer>
-    </div>
-  );
+interface NavLink { href: string; label: string }
+interface Project {
+  title: string
+  desc: string
+  img: { src: string; alt: string; w: number; h: number }
+  tech: string[]
+  demo: string
+  code: string
 }
+interface Testimonial { avatar: string; name: string; role: string; quote: string }
 
+const NAV: NavLink[] = [
+  { href: '#about',    label: 'About' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#skills',   label: 'Skills' },
+  { href: '#contact',  label: 'Contact' },
+]
 
+const PROJECTS: Project[] = [
+  { title: 'Project One',   desc: 'Scope & tech stack.', img: { src: '/file.svg',   alt: 'Proj1', w: 400, h: 300 }, tech: ['A','B'], demo: '#', code: '#' },
+  { title: 'Project Two',   desc: 'Scope & tech stack.', img: { src: '/window.svg', alt: 'Proj2', w: 400, h: 300 }, tech: ['C','D'], demo: '#', code: '#' },
+  { title: 'Project Three', desc: 'Scope & tech stack.', img: { src: '/vercel.svg', alt: 'Proj3', w: 400, h: 300 }, tech: ['E','F'], demo: '#', code: '#' },
+]
+
+const SKILLS = ['JavaScript','TypeScript','React','Next.js','Node.js','Tailwind','SQL','MongoDB','Git','Docker']
+
+const TESTIMONIALS: Testimonial[] = [
+  { avatar: '/avatar.jpg', name: 'Client One',   role: 'CEO, Corp',   quote: '“Delivered above expectations.”' },
+  { avatar: '/avatar.jpg', name: 'Client Two',   role: 'CTO, Startup', quote: '“Creative and rigorous.”' },
+  { avatar: '/avatar.jpg', name: 'Client Three', role: 'Lead, TechOrg',quote: '“Great communicator.”' },
+]
+ 
+const Home: NextPage = () => (
+  <>
+    <Head>
+      <title>{SITE_TITLE}</title>
+      <meta name="description" content={SITE_DESC} />
+      <link rel="canonical" href={BASE_URL} />
+      <meta property="og:title" content={SITE_TITLE} />
+      <meta property="og:description" content={SITE_DESC} />
+    </Head>
+
+    <header role="banner" className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur">
+      <div className="container mx-auto flex h-14 items-center justify-between px-4">
+        <Link href="/" className="text-lg font-bold text-gray-900">Your Name</Link>
+        <nav aria-label="Main" className="flex space-x-6">
+          {NAV.map(n => (
+            <Link
+              key={n.href}
+              href={n.href}
+              className={clsx(
+                'text-sm font-medium transition-colors',
+                'text-gray-600 hover:text-blue-600'
+              )}
+            >
+              {n.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main role="main" className="bg-gray-50">
+      <section className="container mx-auto grid lg:grid-cols-2 items-center gap-10 px-4 py-24">
+        <Avatar className="w-64 h-64 shadow-lg justify-self-center">
+          <AvatarImage src="/avatar.jpg" alt="Your Name"/>
+          <AvatarFallback>ES</AvatarFallback>
+        </Avatar>
+        <div className="space-y-6">
+          <h1 className="text-5xl font-extrabold text-gray-900">Hi, I’m Your Name</h1>
+          <p className="text-xl font-medium text-gray-700">Full-Stack Developer</p>
+          <p className="text-lg text-gray-600">Passionate about performant web apps.</p>
+          <div className="flex space-x-4">
+            <Link href="#projects">
+              <Button size="lg">View Projects</Button>
+            </Link>
+            <Link href="#contact">
+              <Button size="lg" variant="outline">Contact Me</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+      <Separator className="my-16" />
+
+      <section id="about" className="container mx-auto px-4 py-24 max-w-3xl text-gray-600 leading-relaxed">
+        <h2 className="text-4xl font-bold text-gray-900 text-center mb-8">About Me</h2>
+        <p>I’m a developer with X years of experience. I love crafting maintainable code.</p>
+        <p>I studied CS at … and worked on enterprise & open-source projects.</p>
+      </section>
+      <Separator className="my-16" />
+
+      <section id="projects" className="bg-gray-100 py-24">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-8">My Work</h2>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {PROJECTS.map(p => (
+              <Card key={p.title} className="flex flex-col">
+                <CardHeader>
+                  <Image
+                    src={p.img.src}
+                    alt={p.img.alt}
+                    width={p.img.w}
+                    height={p.img.h}
+                    className="rounded-md object-cover w-full h-48 mb-4"
+                    sizes="(min-width:1024px)33vw,(min-width:768px)50vw,100vw"
+                    loading="lazy"
+                  />
+                  <CardTitle>{p.title}</CardTitle>
+                  <CardDescription>{p.desc}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  {p.tech.map(t => (
+                    <Badge key={t} variant="secondary" className="mr-2">{t}</Badge>
+                  ))}
+                </CardContent>
+                <CardFooter className="flex space-x-2">
+                  <Link href={p.demo}><Button size="sm" variant="outline">Demo</Button></Link>
+                  <Link href={p.code}><Button size="sm" variant="outline">Code</Button></Link>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+      <Separator className="my-16" />
+
+      <section id="skills" className="py-24 text-center">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">Skills</h2>
+        <div className="flex flex-wrap justify-center gap-4">
+          {SKILLS.map(s => <Badge key={s} variant="default">{s}</Badge>)}
+        </div>
+      </section>
+      <Separator className="my-16" />
+
+      <section id="testimonials" className="bg-gray-100 py-24">
+        <h2 className="text-4xl font-bold text-gray-900 text-center mb-8">Testimonials</h2>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 px-4">
+          {TESTIMONIALS.map(t => (
+            <Card key={t.name} className="flex flex-col">
+              <CardHeader>
+                <div className="flex items-center space-x-4">
+                  <Avatar>
+                    <AvatarImage src={t.avatar} alt={t.name} />
+                    <AvatarFallback>{t.name.slice(0,2).toUpperCase()}</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <CardTitle>{t.name}</CardTitle>
+                    <CardDescription>{t.role}</CardDescription>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="italic text-gray-700">{t.quote}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+      <Separator className="my-16" />
+
+      <section id="contact" className="py-24 text-center">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+        <p className="text-gray-600 mb-8">Have a project in mind? Drop me a message!</p>
+        <Link href={`mailto:${EMAIL}`}><Button size="lg">Send Me an Email</Button></Link>
+      </section>
+    </main>
+
+    <footer role="contentinfo" className="border-t bg-white py-8">
+      <div className="container mx-auto flex items-center justify-center px-4">
+        <p className="text-sm text-gray-600">&copy; {YEAR} Your Name. All rights reserved.</p>
+      </div>
+    </footer>
+  </>
+)
+
+export default Home
