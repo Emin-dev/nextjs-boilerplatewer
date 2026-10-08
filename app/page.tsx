@@ -31,7 +31,7 @@ interface Project {
   demo: string
   code: string
 }
-interface Testimonial { avatar: string; name: string; role: string; quote: string }
+interface Testimonial { avatar?: string; name: string; role: string; quote: string }
 
 const NAV: NavLink[] = [
   { href: '#about',    label: 'About' },
@@ -49,9 +49,9 @@ const PROJECTS: Project[] = [
 const SKILLS = ['JavaScript','TypeScript','React','Next.js','Node.js','Tailwind','SQL','MongoDB','Git','Docker']
 
 const TESTIMONIALS: Testimonial[] = [
-  { avatar: '/avatar.jpg', name: 'Client One',   role: 'CEO, Corp',   quote: '“Delivered above expectations.”' },
-  { avatar: '/avatar.jpg', name: 'Client Two',   role: 'CTO, Startup', quote: '“Creative and rigorous.”' },
-  { avatar: '/avatar.jpg', name: 'Client Three', role: 'Lead, TechOrg',quote: '“Great communicator.”' },
+  { name: 'Client One',   role: 'CEO, Corp',   quote: '“Delivered above expectations.”' },
+  { name: 'Client Two',   role: 'CTO, Startup', quote: '“Creative and rigorous.”' },
+  { name: 'Client Three', role: 'Lead, TechOrg',quote: '“Great communicator.”' },
 ]
  
 const Home: NextPage = () => (
@@ -87,7 +87,6 @@ const Home: NextPage = () => (
     <main role="main" className="bg-gray-50">
       <section className="container mx-auto grid lg:grid-cols-2 items-center gap-10 px-4 py-24">
         <Avatar className="w-64 h-64 shadow-lg justify-self-center">
-          <AvatarImage src="/avatar.jpg" alt="Your Name"/>
           <AvatarFallback>ES</AvatarFallback>
         </Avatar>
         <div className="space-y-6">
@@ -164,7 +163,7 @@ const Home: NextPage = () => (
               <CardHeader>
                 <div className="flex items-center space-x-4">
                   <Avatar>
-                    <AvatarImage src={t.avatar} alt={t.name} />
+                    {t.avatar && <AvatarImage src={t.avatar} alt={t.name} />}
                     <AvatarFallback>{t.name.slice(0,2).toUpperCase()}</AvatarFallback>
                   </Avatar>
                   <div>

@@ -26,3 +26,6 @@ A strict isolated probe of `eslint-config-next@15.5.27` with `next/core-web-vita
 Do not add that dependency stack as-is: it currently introduces high-severity [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) through the braces/fast-glob dependency chain, with no patched braces release listed. The compatible [ESLint 9 line is also end-of-life](https://eslint.org/version-support/); ESLint 10 is outside the Next.js 15 config peer range. No force/legacy-peer-deps installation or rule suppression is used.
 
 Resume lint setup when a patched compatible stack is available, or as part of a separately tested framework/tooling migration. [Next.js 15 is Maintenance LTS](https://nextjs.org/support-policy). Until lint and applicable deployment/browser review gates are resolved, keep the security repair as a draft.
+
+## Portfolio avatar fallback
+The inherited page requested a missing `/avatar.jpg`. The page now uses the same existing initials fallbacks (ES and CL) without requesting a nonexistent placeholder. Optional testimonial image paths remain supported. Browser tests assert those initials and that no missing-avatar request is sent. No portrait or profile information was invented.

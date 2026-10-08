@@ -44,13 +44,24 @@ test("unknown routes return 404", async ({ request }) => {
 });
 
 test("portfolio hydrates and section navigation works", async ({ page }) => {
+  const missingAvatarRequests: string[] = [];
+  page.on("request", (request) => {
+    if (new URL(request.url()).pathname === "/avatar.jpg") missingAvatarRequests.push(request.url());
+  });
   const response = await page.goto("/");
   expect(response?.status()).toBe(200);
   await expect(page.getByRole("heading", { name: "Hi, I’m Your Name", exact: true })).toBeVisible();
+  await expect(page.getByText("ES", { exact: true })).toBeVisible();
+  const testimonialInitials = page.getByText("CL", { exact: true });
+  await expect(testimonialInitials).toHaveCount(3);
+  for (let index = 0; index < 3; index += 1) {
+    await expect(testimonialInitials.nth(index)).toBeVisible();
+  }
   await page.locator("nav").getByRole("link", { name: "Projects", exact: true }).click();
   await expect(page).toHaveURL(/#projects$/);
   await expect(page.getByRole("heading", { name: "My Work", exact: true })).toBeVisible();
   await page.locator("nav").getByRole("link", { name: "Contact", exact: true }).click();
   await expect(page).toHaveURL(/#contact$/);
   await expect(page.getByRole("link", { name: "Send Me an Email" })).toBeVisible();
+  expect(missingAvatarRequests, "missing placeholder avatar must not be requested").toEqual([]);
 });
