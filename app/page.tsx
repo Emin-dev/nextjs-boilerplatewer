@@ -124,7 +124,7 @@ const Home: NextPage = () => (
                     alt={p.img.alt}
                     width={p.img.w}
                     height={p.img.h}
-                    className="rounded-md object-cover w-full h-48 mb-4"
+                    className={clsx("rounded-md object-cover w-full h-48 mb-4", p.img.src === "/vercel.svg" && "invert dark:invert-0")}
                     sizes="(min-width:1024px)33vw,(min-width:768px)50vw,100vw"
                     loading="lazy"
                   />
