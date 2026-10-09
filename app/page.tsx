@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -64,7 +64,7 @@ const Home: NextPage = () => (
       <meta property="og:description" content={SITE_DESC} />
     </Head>
 
-    <header role="banner" className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <Link href="/" className="text-lg font-bold text-gray-900">Your Name</Link>
         <nav aria-label="Main" className="flex space-x-6">
@@ -84,7 +84,7 @@ const Home: NextPage = () => (
       </div>
     </header>
 
-    <main role="main" className="bg-gray-50">
+    <main className="bg-gray-50">
       <section className="container mx-auto grid lg:grid-cols-2 items-center gap-10 px-4 py-24">
         <Avatar className="w-64 h-64 shadow-lg justify-self-center">
           <AvatarFallback>ES</AvatarFallback>

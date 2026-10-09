@@ -6,8 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit",
+    "lint": "biome lint . --error-on-warnings",
+    "typecheck": "tsc --noEmit --incremental false",
     "test:smoke": "playwright test"
   },
   "dependencies": {
@@ -32,7 +32,8 @@
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "@playwright/test": "1.64.0"
+    "@playwright/test": "1.64.0",
+    "@biomejs/biome": "2.5.15"
   },
   "overrides": {
     "postcss": "8.5.29"

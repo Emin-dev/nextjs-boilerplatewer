@@ -43,7 +43,7 @@ test("unknown routes return 404", async ({ request }) => {
   expect(response.status()).toBe(404);
 });
 
-test("portfolio hydrates and section navigation works", async ({ page }) => {
+test("portfolio hydrates and section navigation works", async ({ page }, testInfo) => {
   const missingAvatarRequests: string[] = [];
   page.on("request", (request) => {
     if (new URL(request.url()).pathname === "/avatar.jpg") missingAvatarRequests.push(request.url());
@@ -57,6 +57,7 @@ test("portfolio hydrates and section navigation works", async ({ page }) => {
   for (let index = 0; index < 3; index += 1) {
     await expect(testimonialInitials.nth(index)).toBeVisible();
   }
+  await page.screenshot({ path: testInfo.outputPath("homepage.png"), fullPage: true, animations: "disabled" });
   await page.locator("nav").getByRole("link", { name: "Projects", exact: true }).click();
   await expect(page).toHaveURL(/#projects$/);
   await expect(page.getByRole("heading", { name: "My Work", exact: true })).toBeVisible();
