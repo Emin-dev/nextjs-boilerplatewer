@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -31,7 +31,7 @@ interface Project {
   demo: string
   code: string
 }
-interface Testimonial { avatar: string; name: string; role: string; quote: string }
+interface Testimonial { avatar?: string; name: string; role: string; quote: string }
 
 const NAV: NavLink[] = [
   { href: '#about',    label: 'About' },
@@ -49,9 +49,9 @@ const PROJECTS: Project[] = [
 const SKILLS = ['JavaScript','TypeScript','React','Next.js','Node.js','Tailwind','SQL','MongoDB','Git','Docker']
 
 const TESTIMONIALS: Testimonial[] = [
-  { avatar: '/avatar.jpg', name: 'Client One',   role: 'CEO, Corp',   quote: '“Delivered above expectations.”' },
-  { avatar: '/avatar.jpg', name: 'Client Two',   role: 'CTO, Startup', quote: '“Creative and rigorous.”' },
-  { avatar: '/avatar.jpg', name: 'Client Three', role: 'Lead, TechOrg',quote: '“Great communicator.”' },
+  { name: 'Client One',   role: 'CEO, Corp',   quote: '“Delivered above expectations.”' },
+  { name: 'Client Two',   role: 'CTO, Startup', quote: '“Creative and rigorous.”' },
+  { name: 'Client Three', role: 'Lead, TechOrg',quote: '“Great communicator.”' },
 ]
  
 const Home: NextPage = () => (
@@ -64,7 +64,7 @@ const Home: NextPage = () => (
       <meta property="og:description" content={SITE_DESC} />
     </Head>
 
-    <header role="banner" className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur">
       <div className="container mx-auto flex h-14 items-center justify-between px-4">
         <Link href="/" className="text-lg font-bold text-gray-900">Your Name</Link>
         <nav aria-label="Main" className="flex space-x-6">
@@ -84,10 +84,9 @@ const Home: NextPage = () => (
       </div>
     </header>
 
-    <main role="main" className="bg-gray-50">
+    <main className="bg-gray-50">
       <section className="container mx-auto grid lg:grid-cols-2 items-center gap-10 px-4 py-24">
         <Avatar className="w-64 h-64 shadow-lg justify-self-center">
-          <AvatarImage src="/avatar.jpg" alt="Your Name"/>
           <AvatarFallback>ES</AvatarFallback>
         </Avatar>
         <div className="space-y-6">
@@ -125,7 +124,7 @@ const Home: NextPage = () => (
                     alt={p.img.alt}
                     width={p.img.w}
                     height={p.img.h}
-                    className="rounded-md object-cover w-full h-48 mb-4"
+                    className={clsx("rounded-md object-cover w-full h-48 mb-4", p.img.src === "/vercel.svg" && "invert dark:invert-0")}
                     sizes="(min-width:1024px)33vw,(min-width:768px)50vw,100vw"
                     loading="lazy"
                   />
@@ -164,7 +163,7 @@ const Home: NextPage = () => (
               <CardHeader>
                 <div className="flex items-center space-x-4">
                   <Avatar>
-                    <AvatarImage src={t.avatar} alt={t.name} />
+                    {t.avatar && <AvatarImage src={t.avatar} alt={t.name} />}
                     <AvatarFallback>{t.name.slice(0,2).toUpperCase()}</AvatarFallback>
                   </Avatar>
                   <div>
